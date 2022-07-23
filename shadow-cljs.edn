@@ -1,15 +1,16 @@
 ;; shadow-cljs configuration
-{:deps
- {:aliases [:cljs]}
+{#_#_:deps {:aliases [:cljs]}
+ :source-paths ["src/dev"
+                "src/main"
+                "src/test"]
 
- :dev-http
- {8020 "public"}
+ :dev-http {8020 "public"}
 
- :builds
- {:app
-  {:target :browser
-   :output-dir "public/js"
-   :asset-path "/js"
-   :modules
-   {:main
-    {:init-fn tailwind.app/init}}}}}
+ :dependencies [[re-frame "1.0.0-rc2"]
+                [reagent "1.0.0-alpha2"]]
+
+ :builds {:app
+          {:target :browser
+           :output-dir "public/js"
+           :asset-path "/js"
+           :modules {:main {:init-fn tailwind.app/init}}}}}
