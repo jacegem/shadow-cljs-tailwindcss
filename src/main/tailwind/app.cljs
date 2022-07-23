@@ -1,7 +1,8 @@
 (ns tailwind.app
-  (:require [reagent.dom :as dom]
-            [tailwind.views :as views]
-            [tailwind.db :as db]))
+  (:require [counter.app :refer [counter-app]]
+            [reagent.dom :as dom]
+            [tailwind.db :as db]
+            [tailwind.views :as views]))
 
 (defn app
   []
@@ -9,10 +10,14 @@
     [views/authenticated]
     [views/public]))
 
+
+(def dom-node (.getElementById js/document "app"))
+
+
+
 ;; start is called by init and after code reloading finishes
 (defn ^:dev/after-load start []
-  (dom/render [app]
-    (.getElementById js/document "app")))
+  (dom/render [#_app counter-app] dom-node))
 
 (defn init []
   ;; init is called ONCE when the page loads
